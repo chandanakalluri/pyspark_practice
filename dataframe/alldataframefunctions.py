@@ -6,4 +6,4 @@ df=spark.read.csv(r"C:\Users\Suresh\Documents\ch\data.csv",header=True,inferSche
 df.withColumn(colName="custemer",col=col("customer").cast('Integer')).show()
 df.withColumn('customer',col('customer')*1).show()
 df.withColumn('sal',lit('20000')).show()
-df.withColumnRenamed('customer','cid').show()
+df.withColumnRenamed('customer','cid').show()#
