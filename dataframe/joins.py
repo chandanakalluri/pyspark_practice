@@ -1,0 +1,23 @@
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("joins").getOrCreate()
+df = spark.read.csv(r"C:\Users\Suresh\Documents\ch\emp.csv", inferSchema=True, header=True)
+df1 = spark.read.csv(r"C:\Users\Suresh\Documents\ch\dept.csv", inferSchema=True, header=True)
+df.show()
+df1.show()
+joint = df.join(df1, df.dept == df1.depid,"inner")
+joint.show()
+# empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"inner") \
+#      .show(truncate=False)
+outerj=df.join(df1,df.dept==df1.depid,"outer")
+outerj.show()
+leftj=df.join(df1,df.dept==df1.depid,"left")
+leftj.show()
+rightj=df.join(df1,df.dept==df1.depid,"right")
+rightj.show()
+leftsemj=df.join(df1,df.dept==df1.depid,"leftsemi")
+leftj.show()
+leftantij=df.join(df1,df.dept==df1.depid.join())
+leftantij.show()
+df.distinct().show()
+df.select("name").distinct().count()
